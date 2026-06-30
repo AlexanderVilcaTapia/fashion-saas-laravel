@@ -12,8 +12,19 @@
         <div class="flex gap-4 items-center">
             <a href="{{ route('orders.index') }}" class="hover:underline">Mis órdenes</a>
             <a href="{{ route('favorites.index') }}" class="hover:underline">Favoritos</a>
-            <a href="{{ route('login') }}" class="hover:underline">Iniciar sesión</a>
-            <a href="{{ route('register') }}" class="bg-white text-indigo-600 px-4 py-1 rounded font-semibold hover:bg-gray-100">Registrarse</a>
+
+            @if (session('access_token'))
+                <span class="text-sm">Hola, {{ session('django_user_name', 'Usuario') }}</span>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="bg-white text-indigo-600 px-4 py-1 rounded font-semibold hover:bg-gray-100">
+                        Cerrar sesión
+                    </button>
+                </form>
+            @else
+                <a href="{{ route('login') }}" class="hover:underline">Iniciar sesión</a>
+                <a href="{{ route('register') }}" class="bg-white text-indigo-600 px-4 py-1 rounded font-semibold hover:bg-gray-100">Registrarse</a>
+            @endif
         </div>
     </nav>
 

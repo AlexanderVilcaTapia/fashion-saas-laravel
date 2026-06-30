@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FavoriteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,8 @@ Route::get('/tienda/{storeSlug}/producto/{productSlug}', [StoreController::class
 
 // Órdenes
 Route::get('/mis-ordenes', [OrderController::class, 'index'])->name('orders.index');
+
+// Favoritos
+Route::get('/favoritos', [FavoriteController::class, 'index'])->name('favorites.index');
+Route::post('/favoritos', [FavoriteController::class, 'store'])->name('favorites.store');
+Route::delete('/favoritos/{id}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');

@@ -37,6 +37,20 @@
                 @endforelse
             </div>
 
+            <form method="POST" action="{{ route('favorites.store') }}" class="mb-4">
+                @csrf
+                <input type="hidden" name="product_id" value="{{ $product['id'] }}">
+                <input type="hidden" name="product_name" value="{{ $product['name'] }}">
+                <input type="hidden" name="product_slug" value="{{ $product['slug'] }}">
+                <input type="hidden" name="store_slug" value="{{ request()->route('storeSlug') }}">
+                <input type="hidden" name="store_name" value="{{ $product['store_name'] ?? '' }}">
+                <input type="hidden" name="price" value="{{ $product['final_price'] }}">
+                <input type="hidden" name="image_url" value="{{ $image ?? '' }}">
+                <button type="submit" class="bg-pink-500 text-white px-4 py-2 rounded font-semibold hover:bg-pink-600">
+                    ♡ Agregar a favoritos
+                </button>
+            </form>
+
             <p class="text-sm text-gray-400">
                 Para comprar este producto, usa la app móvil o la web de Fashion SaaS.
             </p>

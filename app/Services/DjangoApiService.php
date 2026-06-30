@@ -56,6 +56,13 @@ class DjangoApiService
             $data = $response->json();
             Session::put('access_token', $data['access']);
             Session::put('refresh_token', $data['refresh']);
+
+            $user = $this->getCurrentUser();
+            if ($user) {
+                Session::put('django_user_id', $user['id']);
+                Session::put('django_user_name', $user['full_name'] ?? $user['username']);
+            }
+
             return ['success' => true, 'data' => $data];
         }
 
@@ -81,6 +88,12 @@ class DjangoApiService
             return ['success' => true, 'data' => $result];
         }
 
+        $user = $this->getCurrentUser();
+        if ($user) {
+            Session::put('django_user_id', $user['id']);
+            Session::put('django_user_name', $user['full_name'] ?? $user['username']);
+        }
+
         return ['success' => false, 'message' => 'Error al registrarse. Verifica los datos.'];
     }
 
@@ -91,6 +104,8 @@ class DjangoApiService
     {
         Session::forget('access_token');
         Session::forget('refresh_token');
+        Session::forget('django_user_id');
+        Session::forget('django_user_name');
     }
 
     /**

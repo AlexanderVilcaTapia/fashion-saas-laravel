@@ -11,6 +11,7 @@
         <a href="{{ route('home') }}" class="text-xl font-bold">Fashion SaaS</a>
         <div class="flex gap-4 items-center">
             <a href="{{ route('orders.index') }}" class="hover:underline">Mis órdenes</a>
+            <a href="{{ route('favorites.index') }}" class="hover:underline">Favoritos</a>
             <a href="{{ route('login') }}" class="hover:underline">Iniciar sesión</a>
             <a href="{{ route('register') }}" class="bg-white text-indigo-600 px-4 py-1 rounded font-semibold hover:bg-gray-100">Registrarse</a>
         </div>

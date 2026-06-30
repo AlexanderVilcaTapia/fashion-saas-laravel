@@ -24,7 +24,8 @@
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
         @forelse ($products as $product)
-            <div class="bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden">
+            <a href="{{ route('store.product', [$product['store_slug'], $product['slug']]) }}"
+            class="block bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden">
                 @php
                     $image = collect($product['images'] ?? [])->firstWhere('is_primary', true)['image'] ?? null;
                 @endphp
@@ -37,7 +38,7 @@
                     <h3 class="font-medium text-sm truncate">{{ $product['name'] }}</h3>
                     <p class="text-indigo-600 font-bold">S/. {{ $product['final_price'] }}</p>
                 </div>
-            </div>
+            </a>
         @empty
             <p class="text-gray-500 col-span-4">No hay productos destacados.</p>
         @endforelse

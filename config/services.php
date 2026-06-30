@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'django' => [
+    'url' => env('DJANGO_API_URL', 'https://fashion-saas-production.up.railway.app/api'),
+],
+
 ];
